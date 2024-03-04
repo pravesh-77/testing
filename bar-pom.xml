@@ -79,11 +79,7 @@
   <artifactId>javacompute</artifactId>
   <version>12.0.8.0</version>
 </dependency>
-					<dependency>
-  <groupId>com.ibm.common</groupId>
-  <artifactId>javacompute</artifactId>
-  <version>12.0.8.0</version>
-</dependency>
+
 
 				</dependencies>
 
