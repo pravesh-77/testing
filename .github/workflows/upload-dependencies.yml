@@ -20,22 +20,16 @@ jobs:
           java-version: 17
           distribution: 'zulu' # Alternative distribution options are available.
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
      
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-      
+
 
       - name: Publish to GitHub Packages Apache Maven
         run:  |
           mvn install:install-file -Dfile=jplugin2.jar -DgroupId=com.ibm.server -DartifactId=jplugin2 -Dversion=12.0.8.0 -Dpackaging=jar
           mvn install:install-file -Dfile=javacompute.jar -DgroupId=com.ibm.server -DartifactId=javacompute -Dversion=12.0.8.0  -Dpackaging=jar
           mvn install:install-file -Dfile=IntegrationAPI.jar -DgroupId=com.ibm.common -DartifactId=IntegrationAPI -Dversion=12.0.8.0  -Dpackaging=jar
-          mvn org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Dfile=jplugin2.jar  -DgroupId=com.ibm.server -DartifactId=jplugin2  -Dversion=12.0.8.0 -Dpackaging=jar -Durl=https://maven.pkg.github.com/balaavekshaa/testing -DrepositoryId=github
+          mvn org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Dfile=jplugin2.jar  -DgroupId=com.ibm.server -DartifactId=jplugin2  -Dversion=12.0.8.0 -Dpackaging=jar -Durl=https://maven.pkg.github.com/pravesh-77/testing -DrepositoryId=github
           
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
