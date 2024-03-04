@@ -43,4 +43,4 @@ jobs:
       
         
       - name: Publish to IntegrationAPI
-        run:  mvn -X org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Dfile=lib/IntegrationAPI.jar  -DskipTests -Dmaven.install.skip=true  -DgroupId=com.ibm.common -DartifactId=integrationapi -Dversion=12.0.8.0 -Dpackaging=jar -Durl=https://github.com/pravesh-77/testing -DrepositoryId=github
+        run:  mvn -X org.apache.maven.plugins:maven-deploy-plugin:3.0.0-M1:deploy-file -Dfile=../lib/IntegrationAPI.jar  -DskipTests -Dmaven.install.skip=true  -DgroupId=com.ibm.common -DartifactId=integrationapi -Dversion=12.0.8.0 -Dpackaging=jar -Durl=https://github.com/pravesh-77/testing -DrepositoryId=github
