@@ -69,22 +69,21 @@
 				</configuration>
 				<dependencies>
 					<dependency>
-						<groupId>com.ibm.server</groupId>
-						<artifactId>jplugin2</artifactId>
-						<version>12.0.8.0</version>
-					</dependency>
+  <groupId>com.ibm.server</groupId>
+  <artifactId>jplugin2</artifactId>
+  <version>12.0.8.0</version>
+</dependency>
 
 					<dependency>
-						<groupId>com.ibm.server</groupId>
-						<artifactId>javacompute</artifactId>
-						<version>12.0.8.0</version>
-					</dependency>
+  <groupId>com.ibm.server</groupId>
+  <artifactId>javacompute</artifactId>
+  <version>12.0.8.0</version>
+</dependency>
 					<dependency>
-						
-					  <groupId>com.ibm.common</groupId>
-					  <artifactId>integrationapi</artifactId>
-					  <version>12.0.8.0</version>
-					</dependency>
+  <groupId>com.ibm.common</groupId>
+  <artifactId>javacompute</artifactId>
+  <version>12.0.8.0</version>
+</dependency>
 
 				</dependencies>
 
