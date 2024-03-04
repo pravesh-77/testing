@@ -2,7 +2,7 @@ name: CI_BAR
 on:
   push:
     branches:
-      - feature/*
+      - features/*
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
