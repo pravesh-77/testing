@@ -5,20 +5,15 @@
     <groupId>com.example</groupId>
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
-
     <packaging>pom</packaging>
-   <profiles>
-    <profile>
-        <id>custom-repo</id>
-        <repositories>
-            <repository>
-               <id>github</id>
-		<name>GitHub Packages</name>
-		<url>https://github.com/pravesh-77/testing</url>
-            </repository>
-        </repositories>
-    </profile>
-</profiles>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://github.com/pravesh-77/testing</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -45,53 +40,53 @@
                     </execution>
                 </executions>
             </plugin>
-	<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.1.1</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includeProjectDependencies>false</includeProjectDependencies>
-					<includePluginDependencies>true</includePluginDependencies>
-					<mainClass>com.ibm.broker.config.appdev.FlowRendererBAR</mainClass>
-					<arguments>
-						<argument>-a </argument><argument> ${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
-						<argument>-k  </argument><argument>  barfiles</argument>
-					</arguments>
-
-
-				</configuration>
-				<dependencies>
-					<dependency>
-  <groupId>com.ibm.server</groupId>
-  <artifactId>jplugin2</artifactId>
-  <version>12.0.8.0</version>
-</dependency>
-
-					<dependency>
-  <groupId>com.ibm.server</groupId>
-  <artifactId>javacompute</artifactId>
-  <version>12.0.8.0</version>
-</dependency>
-
-
-				</dependencies>
-
-			</plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeProjectDependencies>false</includeProjectDependencies>
+                    <includePluginDependencies>true</includePluginDependencies>
+                    <mainClass>com.ibm.broker.config.appdev.FlowRendererBAR</mainClass>
+                    <arguments>
+                        <argument>-a</argument>
+                        <argument>${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
+                        <argument>-k</argument>
+                        <argument>barfiles</argument>
+                    </arguments>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.ibm.server</groupId>
+                        <artifactId>jplugin2</artifactId>
+                        <version>12.0.8.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.ibm.server</groupId>
+                        <artifactId>javacompute</artifactId>
+                        <version>12.0.8.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.ibm.common</groupId>
+                        <artifactId>integrationapi</artifactId>
+                        <version>12.0.8.0</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
-	<distributionManagement>
-		<repository>
-			<id>github</id>
-			<name>GitHub Packages</name>
-			<url>https://github.com/pravesh-77/testing</url>
-		</repository>
-	</distributionManagement>
-    
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://github.com/pravesh-77/testing</url>
+        </repository>
+    </distributionManagement>
 </project>
