@@ -20,9 +20,23 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-      # Download Maven Artifact using PowerShell script
+      # Authenticate with GitHub Package Registry
+      #- name: Authenticate with GPR
+      #  run: echo "//mvn.pkg.github.com/${{ github.repository.owner }}/:_authToken=${{ secrets.TESTSECRET }}" > ~/.m2/settings.xml
+      
+      # Download Maven Artifact
       - name: Download Maven Artifact
-        run: powershell.exe -File downloadArtifact.ps1
+        run: |
+          $artifact = "com.example:mybar:latest"
+          $extension = "jar"
+
+          # Download the artifact using Maven
+          mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
+        shell: pwsh
+        env:
+          JAVA_HOME: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
+          JAVA_HOME_17_X64: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
+
       - name: Output file path in container
         run: |
             echo "File has been downloaded to $HOME/.m2/repository/com/example/mybar/latest/mybar-latest.jar"
