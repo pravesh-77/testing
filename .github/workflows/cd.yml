@@ -22,13 +22,11 @@ jobs:
 
       # Download Maven Artifact
       - name: Download Maven Artifact
-        shell: pwsh
         run: |
           $artifact = "com.example:mybar:latest"
           $extension = "jar"
-          # Download the artifact using Maven
           mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
-
+        shell: pwsh
         env:
           JAVA_HOME: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
           JAVA_HOME_17_X64: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
@@ -36,5 +34,3 @@ jobs:
       - name: Output file path in container
         run: |
           echo "File has been downloaded to $HOME/.m2/repository/com/example/mybar/latest/mybar-latest.jar"
-      
-      # Add deployment steps using the downloaded artifact
