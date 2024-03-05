@@ -28,7 +28,7 @@ jobs:
           $extension = "jar"
           
           # Download the artifact using Maven
-          mvn -q dependency:get -Dartifact="$($artifact):$($extension)" -DremoteRepositories=https://mvn.pkg.github.com/testing
+          mvn -q dependency:get -Dartifact="$artifact:$extension" -DremoteRepositories=https://mvn.pkg.github.com/testing
       - name: Output file path in container
         run: |
             echo "File has been downloaded to $HOME/.m2/repository/com/example/mybar/latest/mybar-latest.jar"
