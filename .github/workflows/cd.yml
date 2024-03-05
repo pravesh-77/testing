@@ -11,22 +11,21 @@ jobs:
     runs-on: self-hosted
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
+    container:
+      image: maven:latest
+
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
-          distribution: 'zulu' # Alternative distribution options are available.
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          distribution: 'zulu'
+          server-id: github
+          settings-path: ${{ github.workspace }}
 
       # Download Maven Artifact
       - name: Download Maven Artifact
-        run: |
-          artifact="com.example:mybar:latest"
-          extension="jar"
-          # Download the artifact using Maven
-          mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
+        run: mvn -q dependency:get -Dartifact=com.example:mybar:latest:jar -DremoteRepositories=https://mvn.pkg.github.com/testing
 
       - name: Output file path in container
         run: |
