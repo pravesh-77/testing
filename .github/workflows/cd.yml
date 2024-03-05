@@ -20,15 +20,9 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-      # Download Maven Artifact
+      # Download Maven Artifact using PowerShell script
       - name: Download Maven Artifact
-        run: |
-          # Construct the Maven coordinates
-          $artifact = "com.example:mybar:latest"
-          $extension = "jar"
-          
-          # Download the artifact using Maven
-          mvn -q dependency:get -Dartifact="$artifact:$extension" -DremoteRepositories=https://mvn.pkg.github.com/testing
+        run: powershell.exe -File path/to/downloadArtifact.ps1
       - name: Output file path in container
         run: |
             echo "File has been downloaded to $HOME/.m2/repository/com/example/mybar/latest/mybar-latest.jar"
