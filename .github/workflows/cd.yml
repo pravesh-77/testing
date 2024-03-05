@@ -22,12 +22,14 @@ jobs:
 
       # Download Maven Artifact
       - name: Download Maven Artifact
-        run: |
-          $artifact = "com.example:mybar:latest"
-          $extension = "jar"
-          # Download the artifact using Maven
-          mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
         shell: pwsh
+        with:
+          script: |
+            $artifact = "com.example:mybar:latest"
+            $extension = "jar"
+            # Download the artifact using Maven
+            mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
+
         env:
           JAVA_HOME: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
           JAVA_HOME_17_X64: C:\Users\Admin\Projects\actions-runner\_work\_tool\Java_Zulu_jdk\17.0.10-7\x64
