@@ -23,23 +23,19 @@ jobs:
       # Authenticate with GitHub Package Registry
       #- name: Authenticate with GPR
       #  run: echo "//mvn.pkg.github.com/${{ github.repository.owner }}/:_authToken=${{ secrets.TESTSECRET }}" > ~/.m2/settings.xml
+      
+      # Download Maven Artifact
       - name: Download Maven Artifact
-        id: download-maven-artifact
-        uses: clausnz/github-action-download-maven-artifact@master
-        with:
-          url: 'https://mvn.pkg.github.com'
-          repository: 'testing'
-          groupId: 'com.example'
-          artifactId: 'mybar'
-          version: 'latest'
-          extension: 'jar'
+        run: |
+          # Construct the Maven coordinates
+          artifact=com.example:mybar:latest
+          extension=jar
+          
+          # Download the artifact using Maven
+          mvn -q dependency:get -Dartifact=$artifact:$extension -DremoteRepositories=https://mvn.pkg.github.com/testing
 
       - name: Output file path in container
         run: |
-            echo "File has been downloaded to ${{ steps.download-maven-artifact.outputs.file }}"
+            echo "File has been downloaded to $HOME/.m2/repository/$(echo $artifact | tr ':' '/')/latest/$(echo $artifact | tr ':' '-')-latest.$extension"
       
-      # Download the artifact from GitHub Package Registry
-      #- name: Download artifact
-       # run: mvn -q dependency:get -Dartifact=com.example:mybar:latest
-        
       # Add deployment steps using the downloaded artifact
