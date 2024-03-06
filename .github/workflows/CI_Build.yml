@@ -35,14 +35,6 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       
-      - name: Build Bar
-        run: mvn clean -U exec:java -f bar-pom.xml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
-      
-      - name: Create Maven settings directory
-        run: New-Item -Path $HOME\.m2 -ItemType Directory
-      
       - name: Copy settings.xml file
         run: Copy-Item -Path $env:GITHUB_WORKSPACE\.github\settings.xml -Destination $HOME\.m2\settings.xml
       
