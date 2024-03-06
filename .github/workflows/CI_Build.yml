@@ -44,6 +44,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
 
       - name: publish artifact 
-        run: mvn deploy -f bar-pom.xml -Dtoken=$GIT_TOKE -Dregistry=https://maven.pkg.github.com/pravesh-77/testing
+        run: mvn deploy -f bar-pom.xml -Dtoken=$GIT_TOKE -Dregistry=https://maven.pkg.github.com/pravesh-77/testing/testing
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
