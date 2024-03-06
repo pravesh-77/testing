@@ -40,8 +40,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       
       - name: Publish Artifact to GitHub Packages
-        run: |
-          mvn deploy -f bar-pom.xml -Dtoken=${{ secrets.MY_TOKEN }}
+        run: mvn deploy -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
