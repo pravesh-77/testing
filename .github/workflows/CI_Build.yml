@@ -34,12 +34,6 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      
-      - name: Copy settings.xml file
-        run: cp $GITHUB_WORKSPACE/settings.xml $HOME/.m2/settings.xml
-        shell: bash
-        env:
-         GITHUB_WORKSPACE: ${{ github.workspace }}
 
       - name: Build Bar
         run: mvn clean -U exec:java -f bar-pom.xml
