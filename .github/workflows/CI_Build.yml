@@ -43,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
       
-      - name: Publish to GitHub Package Registry
-        run: mvn deploy
-        env:
+      - name: publish package to github packages
+        run: mvn --batch-mode deploy
+        env: 
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
