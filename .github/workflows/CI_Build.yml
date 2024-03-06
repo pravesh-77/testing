@@ -44,6 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
 
       - name: publish artifact 
-        run: mvn deploy -f bar-pom.xml -Dtoken=$BAR_TOKEN
+        run: mvn deploy -f bar-pom.xml -Dgithub.token=$BAR_TOKEN
         env:
-          GITHUB_TOKEN: ${{ secrets.TESTSECRET }}
+         GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
+
