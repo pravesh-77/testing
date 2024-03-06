@@ -36,14 +36,12 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       
       - name: Build Bar
-        run: mvn clean package -U -f bar-pom.xml  # Update to package phase
+        run: mvn clean package -U -f bar-pom.xml  # Add clean and package phases
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       
-      - name: Publish Artifact to GitHub Packages
-        run: mvn deploy -f bar-pom.xml
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+      - name: Debug Logging
+        run: mvn install -X -f bar-pom.xml  # Enable debug logging for Maven install
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
