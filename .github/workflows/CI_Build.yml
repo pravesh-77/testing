@@ -1,37 +1,49 @@
 name: CI_BAR
+
 on:
   push:
     branches:
-      - featureS/*
+      - features/*
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: CI
     runs-on: self-hosted
-    
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
+          distribution: 'zulu'
           java-version: 17
-          distribution: 'zulu' # Alternative distribution options are available.
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          architecture: x64
+          server-id: github
+          server-username: ${{ github.actor }}
+          server-password: ${{ secrets.GITHUB_TOKEN }}
+          overwrite-settings: true
+
       - name: Cache Maven packages
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Build Bar
-        run: mvn clean -U exec:java -f bar-pom.xml
+
+      - name: Clean Build
+        run: mvn clean install -U -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
-      - name: publish artifact 
-        run: mvn deploy -f bar-pom.xml -Dtoken=$BAR_TOKEN
+
+      - name: Publish to GitHub Packages Apache Maven
+        run: mvn deploy -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
