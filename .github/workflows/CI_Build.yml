@@ -26,8 +26,8 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Install JAR to local Maven repository
-        run: mvn install:install-file -Dfile=C:/Users/Admin/Downloads/mybar-0.1.4.bar -DgroupId=com.example -DartifactId=mybar -Dversion=0.1.4 -Dpackaging=jar
+      - name: Install BAR to local Maven repository
+        run: mvn install:install-file -Dfile=C:/Users/Admin/Downloads/mybar-0.1.4.bar -DgroupId=com.example -DartifactId=mybar -Dversion=0.1.4 -Dpackaging=bar
       - name: Build Bar
         run: mvn clean -U exec:java -f bar-pom.xml
         env:
