@@ -40,8 +40,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
       
-      - name: Publish artifact 
-        run: mvn clean -U exec:java -f bar-pom.xml
+      - name: Publish to GitHub Package Registry
+        run: mvn deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
 
