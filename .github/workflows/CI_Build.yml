@@ -37,7 +37,7 @@ jobs:
       
       - name: Copy settings.xml file
         run: Copy-Item -Path $env:GITHUB_WORKSPACE/settings.xml -Destination $HOME/.m2/settings.xml
-        shell: pwsh
+        shell: bash
         env:
          GITHUB_WORKSPACE: ${{ github.workspace }}
 
