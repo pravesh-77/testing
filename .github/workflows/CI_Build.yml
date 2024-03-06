@@ -1,25 +1,19 @@
 name: CI_BAR
-
 on:
   push:
     branches:
       - features/*
   pull_request:
     types: [opened, synchronize, reopened]
-
 jobs:
+
   build:
     name: CI
     runs-on: self-hosted
-    permissions:
-      contents: read
-      packages: write
-      
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -40,12 +34,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
       
-      - name: Publish to GitHub Package Registry
-        run: mvn deploy -f bar-pom.xml
+      - name: Publish to GitHub Packages Apache Maven
+        run: mvn clean -U exec:java -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
           path: target/*.bar
