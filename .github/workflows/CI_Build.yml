@@ -28,7 +28,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Install BAR to local Maven repository
-        run: mvn install:install-file -Dfile=mybar-0.1.4.bar -DgroupId=com.example -DartifactId=mybar -Dversion=0.1.4 -Dpackaging=bar
+        run: mvn install:install-file -Dfile="C:\Users\Admin\Projects\actions-runner\_work\testing\testing\mybar-0.1.4.bar" -DgroupId=com.example -DartifactId=mybar -Dversion=0.1.4 -Dpackaging=bar
       - name: Build and Deploy
         run: |
           mvn clean deploy -DskipTests
