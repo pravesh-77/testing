@@ -40,11 +40,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKE }}
       
-      - name: Use custom Maven settings.xml
-        run: |
-          mkdir $HOME/.m2
-          cp $GITHUB_WORKSPACE/.github/settings.xml $HOME/.m2/settings.xml
-        shell: bash
+      - name: Create Maven settings directory
+        run: New-Item -Path $HOME\.m2 -ItemType Directory
+      
+      - name: Copy settings.xml file
+        run: Copy-Item -Path $env:GITHUB_WORKSPACE\.github\settings.xml -Destination $HOME\.m2\settings.xml
       
       - name: Publish artifact 
         run: mvn deploy -f bar-pom.xml
