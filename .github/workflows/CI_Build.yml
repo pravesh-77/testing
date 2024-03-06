@@ -35,7 +35,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       - name: publish artifact 
-        run: mvn deploy -f bar-pom.xml -Dtoken=$GITHUB_TOKEN -Dregistry=https://github.com/pravesh-77/testing/tree/features/dependenciesUpd
+        run: mvn deploy -f bar-pom.xml -Dtoken=$MY_TOKEN -Dregistry=https://github.com/pravesh-77/testing
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
