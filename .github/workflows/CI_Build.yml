@@ -36,7 +36,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       
       - name: Copy settings.xml file
-        run: Copy-Item -Path $env:GITHUB_WORKSPACE/settings.xml -Destination $HOME/.m2/settings.xml
+        run: cp $GITHUB_WORKSPACE/settings.xml $HOME/.m2/settings.xml
         shell: bash
         env:
          GITHUB_WORKSPACE: ${{ github.workspace }}
