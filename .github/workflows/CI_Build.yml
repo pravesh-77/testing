@@ -42,7 +42,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build Bar
-        run: mvn clean install -U -DskipTests -f bar-pom.xml
+        run: mvn clean install -U -Dmaven.test.skip=true -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
 
