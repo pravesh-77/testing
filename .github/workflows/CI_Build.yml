@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
 
-      - name: publish artifact 
-        run: mvn deploy -f bar-pom.xml -Dtoken=$BAR_TOKEN -Dregistry=https://maven.pkg.github.com/pravesh-77
+      - name: Publish to GitHub Packages 
+        run: mvn clean -U exec:java deploy -f bar-pom.xml -P custom-repo
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
 
