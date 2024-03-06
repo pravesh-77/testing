@@ -11,7 +11,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://github.com/pravesh-77/testing</url>
+            <url>https://maven.pkg.github.com/pravesh-77/testing</url>
         </repository>
     </repositories>
 
@@ -86,7 +86,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://github.com/pravesh-77/testing</url>
+            <url>https://maven.pkg.github.com/pravesh-77/testing</url>
         </repository>
     </distributionManagement>
 </project>
