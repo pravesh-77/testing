@@ -37,7 +37,7 @@ jobs:
       - name: publish artifact 
         run: mvn deploy -f bar-pom.xml -Dtoken=$GITHUB_TOKEN -Dregistry=https://maven.pkg.github.com/pravesh-77
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/upload-artifact@v4
         with:
