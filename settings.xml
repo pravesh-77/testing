@@ -4,8 +4,8 @@
   <servers>
     <server>
       <id>github</id>
-      <username>${env.GITHUB_ACTOR}</username>
-      <password>${env.GITHUB_TOKEN}</password>
+      <username>${env.GITHUB_ACTOR}pravesh-77
+      <password>${env.GITHUB_TOKEN}GIT_TOKE
     </server>
   </servers>
   <profiles>
@@ -13,7 +13,7 @@
       <repositories>
         <repository>
           <id>github</id>
-          <url>https://github.com/balaavekshaa/testing</url>
+          <url>https://github.com/pravesh-77/testing</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
