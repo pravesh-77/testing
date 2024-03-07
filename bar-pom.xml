@@ -6,7 +6,7 @@
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
 
-    <packaging>jar</packaging> <!-- Changed packaging type to 'jar' -->
+    <packaging>jar</packaging> <!-- Changed packaging type to 'bar' -->
 
     <profiles>
         <profile>
@@ -20,38 +20,6 @@
             </repositories>
         </profile>
     </profiles>
-
-    <dependencies>
-        <!-- Add Joda-Time dependency -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.10.11</version> <!-- Use the appropriate version -->
-        </dependency>
-
-        <!-- Add other dependencies here -->
-        <dependency>
-            <groupId>com.ibm.server</groupId>
-            <artifactId>jplugin2</artifactId>
-            <version>12.0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.server</groupId>
-            <artifactId>javacompute</artifactId>
-            <version>12.0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibm.common</groupId>
-            <artifactId>integrationapi</artifactId>
-            <version>12.0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>mybar</artifactId>
-            <version>0.1.4</version>
-            <type>bar</type> <!-- Added type 'bar' -->
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -100,10 +68,17 @@
                         <argument>barfiles</argument>
                     </arguments>
                 </configuration>
+                <dependencies>
+                    <!-- Add other dependencies here -->
+                    <dependency>
+                        <groupId>joda-time</groupId>
+                        <artifactId>joda-time</artifactId>
+                        <version>2.10.11</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
-
     <distributionManagement>
         <repository>
             <id>github</id>
