@@ -71,7 +71,7 @@
                 <dependencies>
                     <!-- Add other dependencies here -->
                     <dependency>
-                        <groupId>org.joda-time</groupId>
+                        <groupId>org.joda.time</groupId>
                         <artifactId>joda-time</artifactId>
                         <version>2.10.10</version>
                     </dependency>
