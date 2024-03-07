@@ -6,7 +6,7 @@
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
 
-    <packaging>bar</packaging> <!-- Changed packaging type to 'bar' -->
+    <packaging>jar</packaging> <!-- Changed packaging type to 'bar' -->
 
     <profiles>
         <profile>
