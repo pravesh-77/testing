@@ -1,41 +1,53 @@
 name: CI_BAR
+
 on:
   push:
     branches:
       - features/*
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
   build:
     name: CI
     runs-on: self-hosted
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
-          distribution: 'zulu'
-          server-id: github
-          settings-path: ${{ github.workspace }}
+          distribution: 'zulu' # Alternative distribution options are available.
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+      
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Install BAR to local Maven repository
-        run: mvn install:install-file -Dfile="C:\Users\Admin\Projects\actions-runner\_work\testing\testing\mybar-0.1.4.bar" -DgroupId=com.example -DartifactId=mybar -Dversion=0.1.4 -Dpackaging=bar
-      - name: Build and Deploy
-        run: |
-          mvn clean deploy -DskipTests
+
+      - name: Build Bar
+        run: mvn clean -U exec:java -f bar-pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
+      
+      - name: Publish artifact 
+        run: mvn deploy -f bar-pom.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.BAR_TOKEN }}
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: my-artifact
           path: target/*.bar
