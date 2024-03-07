@@ -6,7 +6,8 @@
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
 
-    <packaging>pom</packaging>
+    <packaging>bar</packaging> <!-- Changed packaging type to 'bar' -->
+
     <profiles>
         <profile>
             <id>custom-repo</id>
@@ -61,8 +62,10 @@
                     <includePluginDependencies>true</includePluginDependencies>
                     <mainClass>com.ibm.broker.config.appdev.FlowRendererBAR</mainClass>
                     <arguments>
-                        <argument>-a </argument><argument> ${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
-                        <argument>-k  </argument><argument>  barfiles</argument>
+                        <argument>-a</argument> <!-- Fixed space between arguments -->
+                        <argument>${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
+                        <argument>-k</argument> <!-- Fixed space between arguments -->
+                        <argument>barfiles</argument>
                     </arguments>
                 </configuration>
                 <dependencies>
@@ -85,6 +88,7 @@
                         <groupId>com.example</groupId>
                         <artifactId>mybar</artifactId>
                         <version>0.1.4</version>
+                        <type>bar</type> <!-- Added type 'bar' -->
                     </dependency>
                 </dependencies>
             </plugin>
