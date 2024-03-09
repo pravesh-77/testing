@@ -6,7 +6,7 @@
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
 
-    <packaging>jar</packaging> <!-- Changed packaging type to 'bar' -->
+    <packaging>jar</packaging> <!-- Changed packaging type to 'jar' -->
 
     <profiles>
         <profile>
@@ -23,52 +23,37 @@
 
     <build>
         <plugins>
-            <!-- Attach the BAR file as an artifact -->
+            <!-- Attach the JAR file as an artifact -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>attach-bar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>attach-artifact</goal>
-                        </goals>
-                        <configuration>
-                            <artifacts>
-                                <artifact>
-                                    <file>${project.build.directory}/${project.artifactId}-${project.version}.bar</file>
-                                    <type>bar</type>
-                                </artifact>
-                            </artifacts>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>hello.HelloWorld</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
+            <!-- Define how to run the Java application -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
+                        <id>java-application</id>
+                        <phase>package</phase>
                         <goals>
                             <goal>java</goal>
                         </goals>
+                        <configuration>
+                            <mainClass>hello.HelloWorld</mainClass>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <!-- Adjusted configuration -->
-                    <mainClass>com.ibm.broker.config.appdev.FlowRendererBAR</mainClass>
-                    <arguments>
-                        <!-- Fixed space between arguments -->
-                        <argument>-a</argument>
-                        <argument>${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
-                        <!-- Fixed space between arguments -->
-                        <argument>-k</argument>
-                        <argument>barfiles</argument>
-                    </arguments>
-                </configuration>
             </plugin>
         </plugins>
     </build>
