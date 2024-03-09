@@ -24,10 +24,10 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-         java-version: 17
-         distribution: 'zulu'
-         server-id: github
-         settings-path: ${{ github.workspace }}/.m2
+          java-version: 17
+          distribution: 'zulu'
+          server-id: github
+          settings-path: ${{ github.workspace }}/.m2
 
       - name: Cache Maven packages
         uses: actions/cache@v3
@@ -37,10 +37,14 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and package with Maven
-        run: mvn clean package
+        run: |
+          mvn clean package
+          ls -R target  # List directory contents to verify the presence of the JAR file
 
       - name: Run Java application
-        run: java -jar target/mybar-0.1.4.jar
+        run: |
+          ls -R target  # List directory contents again to double-check
+          java -jar target/mybar-0.1.4.jar
 
       - name: Publish packages to GitHub Packages
         run: mvn deploy -DskipTests=true
