@@ -6,62 +6,39 @@
     <artifactId>mybar</artifactId>
     <version>0.1.4</version>
 
-    <packaging>jar</packaging> <!-- Changed packaging type to 'jar' -->
+    <packaging>jar</packaging>
 
-    <profiles>
-        <profile>
-            <id>custom-repo</id>
-            <repositories>
-                <repository>
-                   <id>github</id>
-                    <name>GitHub Packages</name>
-                    <url>https://maven.pkg.github.com/pravesh-77/testing</url>
-                </repository>
-            </repositories>
-        </profile>
-    </profiles>
+    <dependencies>
+        <!-- Add your dependencies here -->
+    </dependencies>
 
     <build>
         <plugins>
-            <!-- Attach the JAR file as an artifact -->
+            <!-- Maven Assembly Plugin configuration -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>hello.HelloWorld</mainClass>
+                            <mainClass>hello.HelloWorld</mainClass> <!-- Set the main class -->
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
-            <!-- Define how to run the Java application -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>java-application</id>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
-                            <goal>java</goal>
+                            <goal>single</goal>
                         </goals>
-                        <configuration>
-                            <mainClass>hello.HelloWorld</mainClass>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/pravesh-77/testing</url>
-        </repository>
-    </distributionManagement>
 </project>
