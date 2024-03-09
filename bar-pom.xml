@@ -58,13 +58,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <includeProjectDependencies>false</includeProjectDependencies>
-                    <includePluginDependencies>true</includePluginDependencies>
+                    <!-- Adjusted configuration -->
                     <mainClass>com.ibm.broker.config.appdev.FlowRendererBAR</mainClass>
                     <arguments>
-                        <argument>-a</argument> <!-- Fixed space between arguments -->
+                        <!-- Fixed space between arguments -->
+                        <argument>-a</argument>
                         <argument>${project.build.directory}/${project.artifactId}-${project.version}.bar</argument>
-                        <argument>-k</argument> <!-- Fixed space between arguments -->
+                        <!-- Fixed space between arguments -->
+                        <argument>-k</argument>
                         <argument>barfiles</argument>
                     </arguments>
                 </configuration>
