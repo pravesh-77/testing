@@ -5,7 +5,7 @@
     <server>
       <id>github</id>
       <username>pravesh-77</username>
-      <password>${env.BAR_TOKEN}</password> <!-- Correctly reference environment variable -->
+      <password>${env.BAR_TOKEN}</password>
     </server>
   </servers>
   <profiles>
