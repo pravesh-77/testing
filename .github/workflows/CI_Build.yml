@@ -46,6 +46,9 @@ jobs:
           ls -R target  # List directory contents again to double-check
           java -jar target/mybar-0.1.4.jar
 
+      - name: Run Java application
+        run: java -jar target/mybar-0.1.4.jar
+
       - name: Publish packages to GitHub Packages
         run: mvn deploy -DskipTests=true
         env:
