@@ -37,15 +37,13 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build and package with Maven
-        run: mvn clean package
-        # List directory contents to verify the presence of the BAR file
-      - name: List directory contents after build
-        run: ls -R target
+        run: |
+          mvn clean package
+          ls -R target  # List directory contents to verify the presence of the JAR file
 
       - name: Run Java application
         run: |
-          # List directory contents again to double-check
-          ls -R target
+          ls -R target  # List directory contents again to double-check
           java -jar target/mybar-0.1.4.jar
 
       - name: Publish packages to GitHub Packages
